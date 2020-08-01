@@ -17,6 +17,7 @@
     console.log("init");
     document.querySelector('#login-form-btn').addEventListener('click', onSessionInvalid);
     document.querySelector('#login-btn').addEventListener('click', login);
+    document.querySelector('#logout-link').addEventListener('click', logout);
     document.querySelector('#register-form-btn').addEventListener('click', showRegisterForm);
     document.querySelector('#register-btn').addEventListener('click', register);
     document.querySelector('#nearby-btn').addEventListener('click', loadNearbyItems);
@@ -200,6 +201,33 @@
       // error
       function() {
         showLoginError();
+      });
+  }
+
+  // -----------------------------------
+  // Logout
+  // -----------------------------------
+
+  function logout() {
+
+    // The request parameters
+    var url = './logout';
+    var req = '';
+
+    ajax('GET', url, req,
+      // successful callback
+      function(res) {
+        var result = JSON.parse(res);
+
+        // successfully logged in
+        if (result.status === 'OK') {
+          onSessionInvalid();
+        }
+      },
+
+      // error
+      function(err) {
+       console.log(err);
       });
   }
 
