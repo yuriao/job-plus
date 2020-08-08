@@ -9,11 +9,11 @@ public class MySQLTableCreation {
 	// Run this as Java application to reset the database.
 	public static void main(String[] args) {
 	try {
-	    
+		MySQLDBUtil dbutil=new MySQLDBUtil();
 		// Step 1 Connect to MySQL.
-		System.out.println("Connecting to " + MySQLDBUtil.URL);
+		System.out.println("Connecting to " + dbutil.URL);
 		Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-		Connection conn = DriverManager.getConnection(MySQLDBUtil.URL);
+		Connection conn = DriverManager.getConnection(dbutil.URL);
 		if (conn == null) {
 		return;
 		}

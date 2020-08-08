@@ -12,11 +12,11 @@ import entity.Item;
 
 public class MySQLConnection {
 	private Connection conn;
-
+	private MySQLDBUtil dbutil=new MySQLDBUtil();
     public MySQLConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection(MySQLDBUtil.URL);
+            conn = DriverManager.getConnection(dbutil.URL);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,7 +39,7 @@ public class MySQLConnection {
     	//duplicate item_id will raise error
     	// to avoid error the IGNORE statement is used to ignore this insertation
         if (conn == null) {
-            System.err.println("DB connection failed");
+            System.err.println("DB connection failed, check connection or config file");
             return;
         }
         saveItem(item); // put items to item table
